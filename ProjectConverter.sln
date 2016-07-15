@@ -1,24 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectConverter", "ProjectConverter.csproj", "{B637ACFD-0AFC-4FBB-A8C0-602B5ABA62F0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectConverter.Tests.Unit", "ProjectConverter.Tests.Unit\ProjectConverter.Tests.Unit.csproj", "{7E25C340-235B-42C1-A0C2-0E279AFC2678}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = ProjectConverter.csproj
-		SccLocalPath1 = .
-		SccProjectUniqueName2 = ProjectConverter.Tests.Unit\\ProjectConverter.Tests.Unit.csproj
-		SccProjectName2 = ProjectConverter.Tests.Unit
-		SccLocalPath2 = ProjectConverter.Tests.Unit
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
