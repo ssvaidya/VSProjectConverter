@@ -1,0 +1,9 @@
+G:\CodePlex\ProjectConverter\ProjectConverter.Tests.Unit\obj\Debug\ProjectConverter.Tests.Unit.csprojResolveAssemblyReference.cache
+G:\CodePlex\ProjectConverter\ProjectConverter.Tests.Unit\bin\Debug\ProjectConverter.Tests.Unit.dll
+G:\CodePlex\ProjectConverter\ProjectConverter.Tests.Unit\bin\Debug\ProjectConverter.Tests.Unit.pdb
+G:\CodePlex\ProjectConverter\ProjectConverter.Tests.Unit\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+G:\CodePlex\ProjectConverter\ProjectConverter.Tests.Unit\bin\Debug\Moq.dll
+G:\CodePlex\ProjectConverter\ProjectConverter.Tests.Unit\bin\Debug\Moq.xml
+G:\CodePlex\ProjectConverter\ProjectConverter.Tests.Unit\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+G:\CodePlex\ProjectConverter\ProjectConverter.Tests.Unit\obj\Debug\ProjectConverter.Tests.Unit.dll
+G:\CodePlex\ProjectConverter\ProjectConverter.Tests.Unit\obj\Debug\ProjectConverter.Tests.Unit.pdb

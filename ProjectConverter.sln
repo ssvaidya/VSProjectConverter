@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectConverter", "ProjectConverter.csproj", "{B637ACFD-0AFC-4FBB-A8C0-602B5ABA62F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectConverter.Tests.Unit", "ProjectConverter.Tests.Unit\ProjectConverter.Tests.Unit.csproj", "{7E25C340-235B-42C1-A0C2-0E279AFC2678}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ProjectConverter.csproj
+		SccLocalPath1 = .
+		SccProjectUniqueName2 = ProjectConverter.Tests.Unit\\ProjectConverter.Tests.Unit.csproj
+		SccProjectName2 = ProjectConverter.Tests.Unit
+		SccLocalPath2 = ProjectConverter.Tests.Unit
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B637ACFD-0AFC-4FBB-A8C0-602B5ABA62F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B637ACFD-0AFC-4FBB-A8C0-602B5ABA62F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B637ACFD-0AFC-4FBB-A8C0-602B5ABA62F0}.Debug|x86.ActiveCfg = Debug|x86
+		{B637ACFD-0AFC-4FBB-A8C0-602B5ABA62F0}.Debug|x86.Build.0 = Debug|x86
+		{B637ACFD-0AFC-4FBB-A8C0-602B5ABA62F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B637ACFD-0AFC-4FBB-A8C0-602B5ABA62F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B637ACFD-0AFC-4FBB-A8C0-602B5ABA62F0}.Release|x86.ActiveCfg = Release|x86
+		{B637ACFD-0AFC-4FBB-A8C0-602B5ABA62F0}.Release|x86.Build.0 = Release|x86
+		{7E25C340-235B-42C1-A0C2-0E279AFC2678}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E25C340-235B-42C1-A0C2-0E279AFC2678}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E25C340-235B-42C1-A0C2-0E279AFC2678}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7E25C340-235B-42C1-A0C2-0E279AFC2678}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E25C340-235B-42C1-A0C2-0E279AFC2678}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E25C340-235B-42C1-A0C2-0E279AFC2678}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

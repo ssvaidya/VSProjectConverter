@@ -1,0 +1,14 @@
+G:\CodePlex\ProjectConverter\bin\Debug\ProjectConverter.exe.config
+G:\CodePlex\ProjectConverter\bin\Debug\ProjectConverter.XML
+G:\CodePlex\ProjectConverter\obj\Debug\ProjectConverter.csprojResolveAssemblyReference.cache
+G:\CodePlex\ProjectConverter\obj\Debug\ProjectConverter.fmMain.resources
+G:\CodePlex\ProjectConverter\obj\Debug\ProjectConverter.Properties.Resources.resources
+G:\CodePlex\ProjectConverter\obj\Debug\ProjectConverter.csproj.GenerateResource.Cache
+G:\CodePlex\ProjectConverter\bin\Debug\ProjectConverter.exe
+G:\CodePlex\ProjectConverter\bin\Debug\ProjectConverter.pdb
+G:\CodePlex\ProjectConverter\obj\Debug\ProjectConverter.exe
+G:\CodePlex\ProjectConverter\obj\Debug\ProjectConverter.pdb
+G:\GitHub\VSProjectConverter\bin\Debug\ProjectConverter.exe.config
+G:\GitHub\VSProjectConverter\bin\Debug\ProjectConverter.XML
+G:\GitHub\VSProjectConverter\obj\Debug\ProjectConverter.exe
+G:\GitHub\VSProjectConverter\obj\Debug\ProjectConverter.pdb

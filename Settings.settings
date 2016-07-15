@@ -1,0 +1,45 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ProjectConverter" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="VS2008_Version" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">9.0.21022</Value>
+    </Setting>
+    <Setting Name="VS2005_Version" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">8.0.50727</Value>
+    </Setting>
+    <Setting Name="BackupFirst" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AutoSelectOlder" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AutoSelectNewer" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="VS2008_OldToolsVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">2.0</Value>
+    </Setting>
+    <Setting Name="VS2010_OldToolsVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">3.5</Value>
+    </Setting>
+    <Setting Name="VS2010_TargetFramework" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">v4.0</Value>
+    </Setting>
+    <Setting Name="VS2008_TargetFramework" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">v3.5</Value>
+    </Setting>
+    <Setting Name="VS2012_TargetFramework" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">v4.5</Value>
+    </Setting>
+    <Setting Name="VS2012_OldToolsVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">4.0</Value>
+    </Setting>
+    <Setting Name="VS2013_OldToolsVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">4.0</Value>
+    </Setting>
+    <Setting Name="VS2013_TargetFramework" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">v4.5</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

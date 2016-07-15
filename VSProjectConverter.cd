@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ProjectConverter.VS2010Info">
+    <Position X="1" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAACABAAAABAAAAAAAAAAACAAAIAgBAAAAAAAA=</HashCode>
+      <FileName>VS2010Info.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectConverter.VS2008Info">
+    <Position X="3.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAACABAAAABAAAAAAAAAAACAAAIAgBAAAAAAAA=</HashCode>
+      <FileName>VS2008Info.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectConverter.VS2005Info">
+    <Position X="6.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VS2005Info.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectConverter.VSProjectInfo">
+    <Position X="1.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAACABAAAAAAAAAAAAgAAAAAAAIAwAAAAAAAAA=</HashCode>
+      <FileName>VSProjectInfo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectConverter.VSProjectVersionInfo">
+    <Position X="3.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAACABAAAABAAAAAAAAAAAAAAAIAgBAAAAAAAA=</HashCode>
+      <FileName>VSProjectVersionInfo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="ProjectConverter.IVSIinfo">
+    <Position X="3.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IVSIinfo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProjectConverter.IVSVersionInfo">
+    <Position X="5.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAIAgAAAAAAAAA=</HashCode>
+      <FileName>IVSVersionInfo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
