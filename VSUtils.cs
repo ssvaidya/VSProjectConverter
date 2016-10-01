@@ -1,66 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace ProjectConverter
 {
-    public class VSUtils
+    public static class VsUtils
     {
-        public static Dictionary<double, string> PopulateVSExistingVersion()
+        public static Dictionary<double, string> PopulateVsExistingVersion()
         {
-            Dictionary<double, string> dictVSCurrentVersion = new Dictionary<double, string>();
+            var dictVsCurrentVersion = new Dictionary<double, string>
+            {
+                {9.0, "Convert existing VS2005 (v8.0) solution"},
+                {10.0, "Convert existing VS2008 (v9.0) solution"},
+                {11.0, "Convert existing VS2010 (v10.0) solution"},
+                {12.0, "Convert existing VS2012 (v11.0) solution"},
+                {13.0, "Convert existing VS2013 (v11.0) solution"}
+            };
 
             //Initialize the possible existing versions of Visual Studio 
-            dictVSCurrentVersion.Add(9.0, "Convert existing VS2005 (v8.0) solution");
-            dictVSCurrentVersion.Add(10.0, "Convert existing VS2008 (v9.0) solution");
-            dictVSCurrentVersion.Add(11.0, "Convert existing VS2010 (v10.0) solution");
-            dictVSCurrentVersion.Add(12.0, "Convert existing VS2012 (v11.0) solution");
-            dictVSCurrentVersion.Add(13.0, "Convert existing VS2013 (v11.0) solution");
 
-            return dictVSCurrentVersion;
+            return dictVsCurrentVersion;
         }
 
-        public static Dictionary<double, string> PopulateVSSupportedVersion()
+        public static Dictionary<double, string> PopulateVsSupportedVersion()
         {
-            Dictionary<double, string> dictVSVersion = new Dictionary<double, string>();
+            var dictVsVersion = new Dictionary<double, string>
+            {
+                {9.0, "Visual Studio 2005 (v8.0)"},
+                {10.0, "Visual Studio 2008 (v9.0)"},
+                {11.0, "Visual Studio 2010 (v10.0)"},
+                {12.0, "Visual Studio 2012 (v11.0)"},
+                {13.0, "Visual Studio 2013 (v11.0)"}
+            };
 
             //Initialize the possible supported versions of Visual Studio 
-            dictVSVersion.Add(9.0, "Visual Studio 2005 (v8.0)");
-            dictVSVersion.Add(10.0, "Visual Studio 2008 (v9.0)");
-            dictVSVersion.Add(11.0, "Visual Studio 2010 (v10.0)");
-            dictVSVersion.Add(12.0, "Visual Studio 2012 (v11.0)");
-            dictVSVersion.Add(13.0, "Visual Studio 2013 (v11.0)");
 
-            return dictVSVersion;
+            return dictVsVersion;
         }
 
-        public static Dictionary<double, string>  PopulateVSVersionString()
+        public static Dictionary<double, string> PopulateVsVersionString()
         {
-            Dictionary<double, string> dictVSVersionString = new Dictionary<double, string>();
+            var dictVsVersionString = new Dictionary<double, string>
+            {
+                {9.0, "v8"},
+                {10.0, "v9"},
+                {11.0, "v10"},
+                {12.0, "v11"},
+                {13.0, "v12"}
+            };
 
             //Initialize the possible supported versions of Visual Studio 
-            dictVSVersionString.Add(9.0, "v8");
-            dictVSVersionString.Add(10.0, "v9");
-            dictVSVersionString.Add(11.0, "v10");
-            dictVSVersionString.Add(12.0, "v11");
-            dictVSVersionString.Add(13.0, "v12");
 
-            return dictVSVersionString;
+            return dictVsVersionString;
         }
 
         public static string GetProjectPart(string projPartString)
         {
-            char doubleQuoteChar = (char)(34);
+            const char doubleQuoteChar = (char) (34);
 
-            string vsProjPart = projPartString.Trim().Trim(doubleQuoteChar);
+            var vsProjPart = projPartString.Trim().Trim(doubleQuoteChar);
 
             return vsProjPart;
-        }//method: GetProjectPart
-            
-
-            
-
-            
+        }
     }
 }

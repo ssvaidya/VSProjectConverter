@@ -1,7 +1,6 @@
-﻿using System;
-namespace ProjectConverter
+﻿namespace ProjectConverter
 {
-    public interface IVSIinfo
+    public interface IVsIinfo
     {
         string ProductVersion { get; set; }
         string ProjectVersion { get; set; }

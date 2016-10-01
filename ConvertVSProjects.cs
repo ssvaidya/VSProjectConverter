@@ -7,28 +7,28 @@ using System.Xml.Linq;
 
 namespace ProjectConverter
 {
-    public class ConvertVSProjects
+    public static class ConvertVsProjects
     {
 
 
         /// <summary>
         /// Makes a backup copy of the existing Visual Studio project file
         /// </summary>
-        /// <param name="FileName"></param>
-        /// <param name="ExistingVersion"></param>
-        public static void MakeBackup(string FileName, double ExistingVersion)
+        /// <param name="fileName"></param>
+        /// <param name="existingVersion"></param>
+        public static void MakeBackup(string fileName, double existingVersion)
         {
-            string Backup = string.Empty;
+            var backup = string.Empty;
 
-            Dictionary<double, string> dictVSVersionString = new Dictionary<double, string>();
+            var dictVsVersionString = new Dictionary<double, string>();
 
             //Get the list of available Visual Studio version numbers
-            dictVSVersionString = VSUtils.PopulateVSVersionString();
+            dictVsVersionString = VsUtils.PopulateVsVersionString();
 
-            if (dictVSVersionString.ContainsKey(ExistingVersion))
+            if (dictVsVersionString.ContainsKey(existingVersion))
             {
-                string strVSVersion = dictVSVersionString[ExistingVersion];
-                Backup = Path.Combine(Path.GetDirectoryName(FileName), string.Format("{0}{1}{2}", Path.GetFileNameWithoutExtension(FileName), strVSVersion, Path.GetExtension(FileName)));
+                var strVsVersion = dictVsVersionString[existingVersion];
+                backup = Path.Combine(Path.GetDirectoryName(fileName), string.Format("{0}{1}{2}", Path.GetFileNameWithoutExtension(fileName), strVsVersion, Path.GetExtension(fileName)));
             }//if
             else
             {
@@ -36,7 +36,7 @@ namespace ProjectConverter
                 MessageBox.Show("Not a supported version", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
-            File.Copy(FileName, Backup, true);
+            File.Copy(fileName, backup, true);
         }
 
         #region Project Conversion Methods
@@ -44,62 +44,62 @@ namespace ProjectConverter
         /// <summary>
         /// Convert VB.Net and C# Visual Studio project files
         /// </summary>
-        /// <param name="ProjFile"></param>
-        /// <param name="ConvertTo"></param>
+        /// <param name="projFile"></param>
+        /// <param name="convertTo"></param>
         /// <param name="blnRemoveSccBindings"></param>
         /// <returns></returns>
-        public static bool ConvertProject(string ProjFile, Versions ConvertTo, bool blnRemoveSccBindings = false)
+        public static bool ConvertProject(string projFile, Versions convertTo, bool blnRemoveSccBindings = false)
         {
 
             //Declare the base namespace for Visual Studio project files
-            const string VSProjNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
-            const string TargetFrameworkNode = "TargetFrameworkVersion";
-            const string PropertyGroupNode = "PropertyGroup";
-            const string ToolsNode = "ToolsVersion";
-            const string ProductVersionNode = "ProductVersion";
-            const string OldToolsVersionNode = "OldToolsVersion";
+            const string vsProjNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
+            const string targetFrameworkNode = "TargetFrameworkVersion";
+            const string propertyGroupNode = "PropertyGroup";
+            const string toolsNode = "ToolsVersion";
+            const string productVersionNode = "ProductVersion";
+            const string oldToolsVersionNode = "OldToolsVersion";
 
             //Get all of the settings for the appropriate version of Visual Studio
-            var vsProjectVersionInfo = VSProjectCreator.VSProjectFactory(ConvertTo);
+            var vsProjectVersionInfo = VsProjectCreator.VsProjectFactory(convertTo);
 
             //Read in the settings from the existing Visual Studio project file
-            VSProjectInfo vsProjectInfo = new VSProjectInfo(ProjFile);
+            var vsProjectInfo = new VsProjectInfo(projFile);
 
             //Load the Xml into a XElement
-            XElement xmlVSProjFile = XElement.Load(ProjFile);
+            var xmlVsProjFile = XElement.Load(projFile);
 
             //Declare the namespace for the Visual Studio project file
-            XNamespace xns = VSProjNamespace;
+            XNamespace xns = vsProjNamespace;
 
             //Query for all of the necessary elements
-            var oldToolsElement = GetVSProjElement(xmlVSProjFile, OldToolsVersionNode);
+            var oldToolsElement = GetVsProjElement(xmlVsProjFile, oldToolsVersionNode);
 
             //Use a Linq query to obtain the TargetFrameworkVersion
-            var targetFrameworkElement = GetVSProjElement(xmlVSProjFile, TargetFrameworkNode);
+            var targetFrameworkElement = GetVsProjElement(xmlVsProjFile, targetFrameworkNode);
 
-            var productVersionElement = GetVSProjElement(xmlVSProjFile, ProductVersionNode);
+            var productVersionElement = GetVsProjElement(xmlVsProjFile, productVersionNode);
 
-            var toolsVersionAttrib = xmlVSProjFile.Attribute("ToolsVersion");
+            var toolsVersionAttrib = xmlVsProjFile.Attribute("ToolsVersion");
 
             //Get the 1st PropertyGroup in the project
-            var propGroup = xmlVSProjFile.Element(xns + PropertyGroupNode);
+            var propGroup = xmlVsProjFile.Element(xns + propertyGroupNode);
             
 
 
             //Make sure that the root element of the file is a Visual Studio project file
-            if (xmlVSProjFile.Name.LocalName.Equals("Project"))
+            if (xmlVsProjFile.Name.LocalName.Equals("Project"))
             {
                 //TODO: Re-analyze this logic since it is not true in all cases, esp. VS 2012
                 if (toolsVersionAttrib != null)
                 {
                     // converting to VS2008, but project is already at VS2008
-                    if (ConvertTo == Versions.Version9 && toolsVersionAttrib.Value.Equals(vsProjectVersionInfo.ToolsVersion))
+                    if (convertTo == Versions.Version9 && toolsVersionAttrib.Value.Equals(vsProjectVersionInfo.ToolsVersion))
                     {
                         // exit quietly
                         return false;
                     }
                     // converting to VS2010, but project is already at VS2010
-                    if (ConvertTo == Versions.Version10 && toolsVersionAttrib.Value.Equals(vsProjectVersionInfo.ToolsVersion))
+                    if (convertTo == Versions.Version10 && toolsVersionAttrib.Value.Equals(vsProjectVersionInfo.ToolsVersion))
                     {
                         // exit quietly
                         return false;
@@ -108,7 +108,7 @@ namespace ProjectConverter
                 else
                 {
                     // If converting to VS2005, but project is already at VS2005
-                    if (ConvertTo == Versions.Version8)
+                    if (convertTo == Versions.Version8)
                     {
                         // exit quietly
                         return false;
@@ -122,16 +122,16 @@ namespace ProjectConverter
             }
 
             // the OldToolsVersion element in the first PropertyGoup
-            string strOldToolsVersion = string.Empty;
+            var strOldToolsVersion = string.Empty;
 
             //Local variable for storing the existing Target Framework Version
             var existingTargetFrameworkVersion = string.Empty;
             
-            switch (ConvertTo)
+            switch (convertTo)
             {
                 case Versions.Version8:
                     // it gets removed
-                    xmlVSProjFile.Attribute(ToolsNode).Remove();
+                    xmlVsProjFile.Attribute(toolsNode).Remove();
                     //OldToolsVersion
                     oldToolsElement.Remove();
                     //TargetFrameworkVersion
@@ -140,7 +140,7 @@ namespace ProjectConverter
                     //Product Version element does not exist in VS 2012
                     if (productVersionElement.Count() == 0)
                     {
-                        propGroup.Add(new XElement(xns + ProductVersionNode, Settings.Default.VS2005_Version));
+                        propGroup.Add(new XElement(xns + productVersionNode, Settings.Default.VS2005_Version));
                     }
                     else if (productVersionElement.Count() > 0)
                     {
@@ -151,18 +151,18 @@ namespace ProjectConverter
                 case Versions.Version9:
                     if (toolsVersionAttrib != null)
                     {
-                        xmlVSProjFile.SetAttributeValue(ToolsNode, vsProjectVersionInfo.ToolsVersion); 
+                        xmlVsProjFile.SetAttributeValue(toolsNode, vsProjectVersionInfo.ToolsVersion); 
                     }//if
                     else
                     {
                         // add the attribute
-                        xmlVSProjFile.Add(new XAttribute(ToolsNode, vsProjectVersionInfo.ToolsVersion));    
+                        xmlVsProjFile.Add(new XAttribute(toolsNode, vsProjectVersionInfo.ToolsVersion));    
                     }
 
                     //Product Version element does not exist in VS 2012
                     if (productVersionElement.Count() == 0)
                     {
-                        propGroup.Add(new XElement(xns + ProductVersionNode, vsProjectVersionInfo.ProductVersion));
+                        propGroup.Add(new XElement(xns + productVersionNode, vsProjectVersionInfo.ProductVersion));
                     }
                     else if (productVersionElement.Count() > 0)
                     {
@@ -179,7 +179,7 @@ namespace ProjectConverter
                     }//if
                     else
                     {
-                        propGroup.Add(new XElement(xns + OldToolsVersionNode, strOldToolsVersion));
+                        propGroup.Add(new XElement(xns + oldToolsVersionNode, strOldToolsVersion));
                     }//else
 
                      existingTargetFrameworkVersion =
@@ -191,19 +191,19 @@ namespace ProjectConverter
                     }//if
                     else
                     {
-                        propGroup.Add(new XElement(xns + TargetFrameworkNode, existingTargetFrameworkVersion));
+                        propGroup.Add(new XElement(xns + targetFrameworkNode, existingTargetFrameworkVersion));
                     }//else
 
                     break;
                 case Versions.Version10:
                     if (toolsVersionAttrib != null)
                     {
-                        xmlVSProjFile.SetAttributeValue(ToolsNode, vsProjectInfo.ToolsVersion);
+                        xmlVsProjFile.SetAttributeValue(toolsNode, vsProjectInfo.ToolsVersion);
                     }//if
                     else
                     {
                         // add the attribute
-                        xmlVSProjFile.Add(new XAttribute(ToolsNode, vsProjectVersionInfo.ToolsVersion));
+                        xmlVsProjFile.Add(new XAttribute(toolsNode, vsProjectVersionInfo.ToolsVersion));
                     }
 
                     if (productVersionElement.Count() > 0)
@@ -221,7 +221,7 @@ namespace ProjectConverter
                     }//if
                     else
                     {
-                        propGroup.Add(new XElement(xns + OldToolsVersionNode, strOldToolsVersion));
+                        propGroup.Add(new XElement(xns + oldToolsVersionNode, strOldToolsVersion));
                     }//else
 
                       existingTargetFrameworkVersion = vsProjectVersionInfo.CheckFrameworkVersion(vsProjectInfo.TargetFrameworkVersion);
@@ -232,18 +232,18 @@ namespace ProjectConverter
                     }//if
                     else
                     {
-                        propGroup.Add(new XElement(xns + TargetFrameworkNode, existingTargetFrameworkVersion));
+                        propGroup.Add(new XElement(xns + targetFrameworkNode, existingTargetFrameworkVersion));
                     }//else
                     break;
                 case Versions.Version11:
                     if (toolsVersionAttrib != null)
                     {
-                        xmlVSProjFile.SetAttributeValue(ToolsNode, vsProjectVersionInfo.ToolsVersion);
+                        xmlVsProjFile.SetAttributeValue(toolsNode, vsProjectVersionInfo.ToolsVersion);
                     }//if
                     else
                     {
                         // add the attribute
-                        xmlVSProjFile.Add(new XAttribute(ToolsNode, vsProjectVersionInfo.ToolsVersion));
+                        xmlVsProjFile.Add(new XAttribute(toolsNode, vsProjectVersionInfo.ToolsVersion));
                     }
 
                     //Product Version information is no longer used in VS 2012
@@ -257,7 +257,7 @@ namespace ProjectConverter
                     }//if
                     else
                     {
-                        propGroup.Add(new XElement(xns + OldToolsVersionNode, strOldToolsVersion));
+                        propGroup.Add(new XElement(xns + oldToolsVersionNode, strOldToolsVersion));
                     }//else
 
                       existingTargetFrameworkVersion = vsProjectVersionInfo.CheckFrameworkVersion(vsProjectInfo.TargetFrameworkVersion);
@@ -268,7 +268,7 @@ namespace ProjectConverter
                     }//if
                     else
                     {
-                        propGroup.Add(new XElement(xns + TargetFrameworkNode, existingTargetFrameworkVersion));
+                        propGroup.Add(new XElement(xns + targetFrameworkNode, existingTargetFrameworkVersion));
                     }//else
                     break;
             }//switch
@@ -276,7 +276,7 @@ namespace ProjectConverter
             // The MSBuildToolsPath vs MSBuildBinPath environmental variable.  Oddly enough a fully patched VS2005
             // uses the newer MSBuildToolsPath.  So, this should only be required if you don't have VS2005 SP1 installed.
             // However, I can't detect that, so we take the worst case scenario, and use the older version
-            var vsImportElement = from vsImportElements in xmlVSProjFile.Elements()
+            var vsImportElement = from vsImportElements in xmlVsProjFile.Elements()
 							where vsImportElements.Name.LocalName.StartsWith("Import")
 							&& vsImportElements.FirstAttribute.Name.LocalName.Equals("Project")
 							&& vsImportElements.FirstAttribute.Value.StartsWith("$(MS")
@@ -284,15 +284,15 @@ namespace ProjectConverter
 
             //Project should always be the first attribute for the Import element
             var msBuildPathValue = vsImportElement.ElementAtOrDefault(0).FirstAttribute.Value;
-            string strMSBuildPath = string.Empty;
+            var strMsBuildPath = string.Empty;
 
-            if (ConvertTo >= Versions.Version9)
+            if (convertTo >= Versions.Version9)
             {
                 // convert it to the newer MSBuildToolsPath
                 if (msBuildPathValue.Contains("MSBuildBinPath"))
                 {
-                    strMSBuildPath = msBuildPathValue.Replace("MSBuildBinPath", "MSBuildToolsPath");
-                    vsImportElement.ElementAtOrDefault(0).FirstAttribute.Value = strMSBuildPath;
+                    strMsBuildPath = msBuildPathValue.Replace("MSBuildBinPath", "MSBuildToolsPath");
+                    vsImportElement.ElementAtOrDefault(0).FirstAttribute.Value = strMsBuildPath;
                 }//if
             }//if
             else
@@ -300,8 +300,8 @@ namespace ProjectConverter
                 // convert it to the older MSBuildBinPath
                 if (msBuildPathValue.Contains("MSBuildToolsPath"))
                 {
-                    strMSBuildPath = msBuildPathValue.Replace("MSBuildToolsPath", "MSBuildBinPath");
-                    vsImportElement.ElementAtOrDefault(0).FirstAttribute.Value = strMSBuildPath;
+                    strMsBuildPath = msBuildPathValue.Replace("MSBuildToolsPath", "MSBuildBinPath");
+                    vsImportElement.ElementAtOrDefault(0).FirstAttribute.Value = strMsBuildPath;
                 }//if
             }//else
 
@@ -312,7 +312,7 @@ namespace ProjectConverter
                 
                 //Obtain a handle to the Source Control elements in the Visual Studio project file
                 var sccProjElement =
-                    from sccElements in xmlVSProjFile.Elements(xns + "PropertyGroup").Elements()
+                    from sccElements in xmlVsProjFile.Elements(xns + "PropertyGroup").Elements()
                     where sccElements.Name.LocalName.StartsWith("Scc")
                     select sccElements;
 
@@ -324,14 +324,14 @@ namespace ProjectConverter
             try
             {
                 //Save the changes back to the Visual Studio project file
-                xmlVSProjFile.Save(ProjFile);
+                xmlVsProjFile.Save(projFile);
             }//try
             catch (UnauthorizedAccessException ex)
             {
-                FileOps.RemoveReadOnlyFlag(ProjFile);
+                FileOps.RemoveReadOnlyFlag(projFile);
                 
                 //Save the changes back to the Visual Studio project file
-                xmlVSProjFile.Save(ProjFile);
+                xmlVsProjFile.Save(projFile);
             } // catch
             
 
@@ -339,12 +339,12 @@ namespace ProjectConverter
         }
 
 
-        private static IEnumerable<XElement> GetVSProjElement(XElement xmlVSProjFile, string vsProjNode)
+        private static IEnumerable<XElement> GetVsProjElement(XElement xmlVsProjFile, string vsProjNode)
         {
-            const string PropertyGroupNode = "PropertyGroup";
+            const string propertyGroupNode = "PropertyGroup";
             XNamespace xns = "http://schemas.microsoft.com/developer/msbuild/2003";
 
-            var vsProjElement = from vsProjElements in xmlVSProjFile.Elements(xns + PropertyGroupNode).Elements()
+            var vsProjElement = from vsProjElements in xmlVsProjFile.Elements(xns + propertyGroupNode).Elements()
                                 where vsProjElements.Name.LocalName.StartsWith(vsProjNode)
                                 select vsProjElements;
             return vsProjElement;

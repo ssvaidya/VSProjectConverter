@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ProjectConverter
+﻿namespace ProjectConverter
 {
-    public interface IVSVersionInfo: IVSIinfo
+    public interface IVsVersionInfo: IVsIinfo
     {
         string OldToolsVersion { get; set; }
         string TargetFrameworkVersion { get; set; }
