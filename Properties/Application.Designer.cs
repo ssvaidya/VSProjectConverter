@@ -45,7 +45,7 @@ namespace ProjectConverter
 			[global::System.Diagnostics.DebuggerStepThroughAttribute()]
 			protected override void OnCreateMainForm()
 			{
-				this.MainForm = global::ProjectConverter.fmMain.DefaultInstance;
+				this.MainForm = global::ProjectConverter.FmMain.DefaultInstance;
 			}
 
 			private static MyApplication MyApp;

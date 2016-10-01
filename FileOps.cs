@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Diagnostics;
 
 namespace ProjectConverter
@@ -19,22 +16,22 @@ namespace ProjectConverter
         /// <returns></returns>
         public static string RemoveReadOnlyAttributes(string strFullPath, out string strStdOutput)
         {
-            string strDirPath = Directory.GetParent(strFullPath).FullName;
+            var strDirPath = Directory.GetParent(strFullPath).FullName;
 
-            ProcessStartInfo procInfo = new ProcessStartInfo(@"C:\windows\system32\attrib.exe");
+            var procInfo = new ProcessStartInfo(@"C:\windows\system32\attrib.exe");
             procInfo.Arguments = string.Format("{0} {1}", "-R", "/S /D");
             procInfo.WorkingDirectory = strDirPath;
             procInfo.UseShellExecute = false; //required to use RedirectStandardOutput property
             procInfo.RedirectStandardOutput = true;
             procInfo.RedirectStandardError = true;
 
-            Process p = new Process();
+            var p = new Process();
             p.StartInfo = procInfo;
             p.Start();
 
             // Read the output stream first and then wait.
             strStdOutput = p.StandardOutput.ReadToEnd();
-            string errOutput = p.StandardError.ReadToEnd();
+            var errOutput = p.StandardError.ReadToEnd();
             p.WaitForExit();
 
             return errOutput;
@@ -82,7 +79,7 @@ namespace ProjectConverter
         /// <remarks>the 64-bit Program Files directory on a 64-bit OS will simply be Environment.SpecialFolder.ProgramFiles</remarks>
         public static string GetProgramFilesPath()
         {
-            string strProgramFilesPath = string.Empty;
+            var strProgramFilesPath = string.Empty;
 
             if (Environment.Is64BitOperatingSystem)
             {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace ProjectConverter
 {
@@ -7,7 +6,7 @@ namespace ProjectConverter
     /// Abstract class to be used for all version specific implementations
     /// of Visual Studio
     /// </summary>
-    public abstract class VSProjectVersionInfo: IVSVersionInfo
+    public abstract class VsProjectVersionInfo: IVsVersionInfo
     {
 
         public virtual string OldToolsVersion { get; set; }
@@ -41,7 +40,7 @@ namespace ProjectConverter
         /// specific targeted release versions of Visual Studio</remarks>
         public virtual string CheckFrameworkVersion(string strOldFrameworkVersion, string defaultFrameworkVersion = "v2.0")
         {
-            string strSupportedFrameworkVersion = string.Empty;
+            var strSupportedFrameworkVersion = string.Empty;
             double dblOldFrameworkVersion, dblMaxFrameworkVersion;
 
             if (string.IsNullOrEmpty(strOldFrameworkVersion))

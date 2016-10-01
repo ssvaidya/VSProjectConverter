@@ -14,7 +14,7 @@ using System.Collections.Specialized;
 namespace ProjectConverter
 {
 	[Microsoft.VisualBasic.CompilerServices.DesignerGenerated()]
-	public partial class fmMain : System.Windows.Forms.Form
+	public partial class FmMain : System.Windows.Forms.Form
 	{
 
 		//Form overrides dispose to clean up the component list.
@@ -43,7 +43,7 @@ namespace ProjectConverter
 		[System.Diagnostics.DebuggerStepThrough()]
 		private void InitializeComponent()
 		{
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fmMain));
+            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FmMain));
             this.ofdMain = new System.Windows.Forms.OpenFileDialog();
             this.tbProjectConverter = new System.Windows.Forms.TabControl();
             this.tbSolnConversion = new System.Windows.Forms.TabPage();
@@ -378,7 +378,7 @@ namespace ProjectConverter
             this.ClientSize = new System.Drawing.Size(668, 348);
             this.Controls.Add(this.tbProjectConverter);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "fmMain";
+            this.Name = "FmMain";
             this.Text = "Visual Studio Project Version Converter";
             this.Load += new System.EventHandler(this.fmMain_Load);
             this.tbProjectConverter.ResumeLayout(false);

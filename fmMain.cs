@@ -1,40 +1,33 @@
 ﻿//INSTANT C# NOTE: Formerly VB project-level imports:
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
-using System.Linq;
-
 using System.IO;
-using System.Text;
-using System.Collections.Specialized;
 
 namespace ProjectConverter
 {
-	public partial class fmMain
+	public partial class FmMain
 	{
 
-		internal fmMain()
+		internal FmMain()
 		{
 			InitializeComponent();
 		}
 
-        private Versions ConvertTo;
-        private VSSolutionInfo m_vsSolutionInfo = null;
-        private const string m_vsDevEnvDir = @"Microsoft Visual Studio 10.0\Common7\IDE";
+        private Versions _convertTo;
+        private VsSolutionInfo _mVsSolutionInfo = null;
+        private const string MVsDevEnvDir = @"Microsoft Visual Studio 10.0\Common7\IDE";
 
-        private static fmMain _DefaultInstance;
-        public static fmMain DefaultInstance
+        private static FmMain _defaultInstance;
+        public static FmMain DefaultInstance
         {
             get
             {
-                if (_DefaultInstance == null)
-                    _DefaultInstance = new fmMain();
+                if (_defaultInstance == null)
+                    _defaultInstance = new FmMain();
 
-                return _DefaultInstance;
+                return _defaultInstance;
             }
         }
 
@@ -43,19 +36,19 @@ namespace ProjectConverter
         {
             get
             {
-                return m_vsSolutionInfo.FormatVersion;
+                return _mVsSolutionInfo.FormatVersion;
             }//get
         }//property: SolutionFormatVersion
 
-        private VSSolutionInfo SolutionInfo
+        private VsSolutionInfo SolutionInfo
         {
             get
             {
-                return m_vsSolutionInfo;
+                return _mVsSolutionInfo;
             }//get
             set
             {
-                m_vsSolutionInfo = value;
+                _mVsSolutionInfo = value;
             }//set
         }//property: SolutionInfo 
         #endregion
@@ -66,8 +59,8 @@ namespace ProjectConverter
         /// </summary>
         private void PopulateSolutionInfo(string strSolutionFilePath)
         {
-            m_vsSolutionInfo = new VSSolutionInfo(strSolutionFilePath);
-            this.SolutionInfo = m_vsSolutionInfo;
+            _mVsSolutionInfo = new VsSolutionInfo(strSolutionFilePath);
+            this.SolutionInfo = _mVsSolutionInfo;
         }//method: PopulateSolutionInfo()
 
 
@@ -80,34 +73,34 @@ namespace ProjectConverter
         private void LoadChoices(double version)
         {
 
-            Dictionary<double, string> dictVSVersion = new Dictionary<double, string>();
-            Dictionary<double, string> dictVSCurrentVersion = new Dictionary<double, string>();
-            string vsCurrentVersion = string.Empty;
+            var dictVsVersion = new Dictionary<double, string>();
+            var dictVsCurrentVersion = new Dictionary<double, string>();
+            var vsCurrentVersion = string.Empty;
 
             //Clear out the current contents of the listbox
             lbVersion.Items.Clear();
 
             //Initialize the possible existing versions of Visual Studio 
-            dictVSCurrentVersion = VSUtils.PopulateVSExistingVersion();
+            dictVsCurrentVersion = VsUtils.PopulateVsExistingVersion();
 
             //Initialize the possible supported versions of Visual Studio 
-            dictVSVersion = VSUtils.PopulateVSSupportedVersion();
+            dictVsVersion = VsUtils.PopulateVsSupportedVersion();
 
 
             //Check if the existing element already exists in the collection
-            if (dictVSCurrentVersion.ContainsKey(version))
+            if (dictVsCurrentVersion.ContainsKey(version))
             {
-                vsCurrentVersion = dictVSCurrentVersion[version];
+                vsCurrentVersion = dictVsCurrentVersion[version];
             }//if
 
             //Remove any elements which are invalid conversion options
-            dictVSVersion.Remove(version);
+            dictVsVersion.Remove(version);
 
             //Loop through the available valid conversion options
             //and add the items to the listbox for display
-            foreach (var vsVersion in dictVSVersion.Keys)
+            foreach (var vsVersion in dictVsVersion.Keys)
             {
-                lbVersion.Items.Add(dictVSVersion[vsVersion]);
+                lbVersion.Items.Add(dictVsVersion[vsVersion]);
             }//foreach
 
             //Set the label text to display the currently selected version Visual Studio project/solution file
@@ -124,7 +117,7 @@ namespace ProjectConverter
         private void lbVersion_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             double v = 0;
-            int ending = 0;
+            var ending = 0;
 
             // chop off any previous ending of the message
             ending = lbMessage.Text.IndexOf("solution");
@@ -136,24 +129,24 @@ namespace ProjectConverter
             //ORIGINAL LINE: Case 8.0
             if (v == 8.0)
             {
-                ConvertTo = Versions.Version8;
+                _convertTo = Versions.Version8;
                 lbMessage.Text += " to VS2005 (v8.0)";
             }
             //ORIGINAL LINE: Case 9.0
             else if (v == 9.0)
             {
-                ConvertTo = Versions.Version9;
+                _convertTo = Versions.Version9;
                 lbMessage.Text += " to VS2008 (v9.0)";
             }
             //ORIGINAL LINE: Case 10.0
             else if (v == 10.0)
             {
-                ConvertTo = Versions.Version10;
+                _convertTo = Versions.Version10;
                 lbMessage.Text += " to VS2010 (v10.0)";
             }
             else if (v == 11.0)
             {
-                ConvertTo = Versions.Version11;
+                _convertTo = Versions.Version11;
                 lbMessage.Text += " to VS2012 (v11.0)";
             }
             //ORIGINAL LINE: Case Else
@@ -173,8 +166,8 @@ namespace ProjectConverter
         private void bnConvert_Click(object sender, System.EventArgs e)
         {
 
-            double ExistingVersion = 0;
-            int convertedProjects = 0;
+            double existingVersion = 0;
+            var convertedProjects = 0;
 
             // A quick sanity check
             if (tbSolutionFile.Text == "")
@@ -183,7 +176,7 @@ namespace ProjectConverter
                 return;
             }
 
-            if (ConvertTo == Versions.NotSelected || lbVersion.SelectedIndex == -1)
+            if (_convertTo == Versions.NotSelected || lbVersion.SelectedIndex == -1)
             {
                 MessageBox.Show("Please enter a select a version to convert to", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
@@ -192,7 +185,7 @@ namespace ProjectConverter
             // Let's make sure this is valid solution file
             try
             {
-                ExistingVersion = this.SolutionFormatVersion;
+                existingVersion = this.SolutionFormatVersion;
             }
             catch (Exception ex)
             {
@@ -205,7 +198,7 @@ namespace ProjectConverter
             {
                 try
                 {
-                    ConvertVSProjects.MakeBackup(tbSolutionFile.Text, ExistingVersion);
+                    ConvertVsProjects.MakeBackup(tbSolutionFile.Text, existingVersion);
                 }
                 catch (Exception ex)
                 {
@@ -214,11 +207,11 @@ namespace ProjectConverter
                 }
             }
 
-            VSSolutionInfo vsSolnInfo = new VSSolutionInfo(tbSolutionFile.Text);
+            var vsSolnInfo = new VsSolutionInfo(tbSolutionFile.Text);
 
 
             //Read the properties of the Visual Studio Solution file
-            VSSolutionInfo convertedSolnInfo = VSSolutionInfo.ConvertVSSolution(vsSolnInfo, ConvertTo);
+            var convertedSolnInfo = VsSolutionInfo.ConvertVsSolution(vsSolnInfo, _convertTo);
 
 
             //Convert all of the projects in the solution
@@ -227,11 +220,11 @@ namespace ProjectConverter
                 //Perform a backup of the project file prior to attempting the conversion
                 if (cbBackup.Checked)
                 {
-                    ConvertVSProjects.MakeBackup(projFile, ExistingVersion);
+                    ConvertVsProjects.MakeBackup(projFile, existingVersion);
                 }//if
 
                 // convert the VB/C# project files
-                if (ConvertVSProjects.ConvertProject(projFile, ConvertTo, chkRemoveScc.Checked))
+                if (ConvertVsProjects.ConvertProject(projFile, _convertTo, chkRemoveScc.Checked))
                 {
                     convertedSolnInfo.ConvertedProjectCount++;
                 }//if
@@ -244,10 +237,10 @@ namespace ProjectConverter
             convertedProjects = convertedSolnInfo.ConvertedProjectCount;
 
             //Convert the Visual Studio Solution file
-            convertedSolnInfo.ConvertVSSolution();
+            convertedSolnInfo.ConvertVsSolution();
 
             // Tell 'em what we did
-            string strMessage = string.Format("Converted 1 solution and {0} project file{1} out of a total of {2} project{3} in the solution", convertedProjects,
+            var strMessage = string.Format("Converted 1 solution and {0} project file{1} out of a total of {2} project{3} in the solution", convertedProjects,
                 ((convertedProjects > 1) ? "s" : "").ToString(),
                 convertedSolnInfo.TotalProjectCount,
                 ((convertedSolnInfo.TotalProjectCount > 1) ? "s" : "").ToString());
@@ -291,8 +284,8 @@ namespace ProjectConverter
             }//if
 
             //Default the Initial directory for the Open File Dialog for the DevEnv.exe and TF.exe path
-            ofdDevEnv.InitialDirectory = Path.Combine(FileOps.GetProgramFilesPath(), m_vsDevEnvDir);
-            ofdTFExe.InitialDirectory = Path.Combine(FileOps.GetProgramFilesPath(), m_vsDevEnvDir);
+            ofdDevEnv.InitialDirectory = Path.Combine(FileOps.GetProgramFilesPath(), MVsDevEnvDir);
+            ofdTFExe.InitialDirectory = Path.Combine(FileOps.GetProgramFilesPath(), MVsDevEnvDir);
         }
 
         /// <summary>
@@ -350,7 +343,7 @@ namespace ProjectConverter
 
         private void cmdUpgradeVSSoln_Click(object sender, EventArgs e)
         {
-            string strStdOutput = string.Empty;
+            var strStdOutput = string.Empty;
 
             //Remove Read Only attributes from entire solution directory and subdirectories
             FileOps.RemoveReadOnlyAttributes(txtVSSolnPath.Text, out strStdOutput);
@@ -364,7 +357,7 @@ namespace ProjectConverter
             //    TFSOps.LaunchTFExeProcess(txtTFExePath.Text, strTFExeArgs);
             //}//if
 
-            string strErrOutput = UpgradeVSProjects.DevEnvUpgrade(txtDevEnvPath.Text, txtVSSolnPath.Text, out strStdOutput);
+            var strErrOutput = UpgradeVsProjects.DevEnvUpgrade(txtDevEnvPath.Text, txtVSSolnPath.Text, out strStdOutput);
 
             if (string.IsNullOrEmpty(strErrOutput))
             {

@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Xml;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 
 namespace ProjectConverter
 {
-    public class VSProjectInfo: IVSIinfo
+    public class VsProjectInfo: IVsIinfo
     {
-        public const string VSProjNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
+        public const string VsProjNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
 
-        public VSProjectInfo(string strProjectFilePath)
+        public VsProjectInfo(string strProjectFilePath)
         {
             ReadProjectFile(strProjectFilePath);
         }
@@ -55,20 +49,20 @@ namespace ProjectConverter
         public void ReadProjectFile(string strProjectFilePath)
         {
             string strTargetFramework = string.Empty, strOldToolsVersion = string.Empty;
-            const string TargetFrameworkNode = "TargetFrameworkVersion";
-            const string OldToolsVersionNode = "OldToolsVersion";
-            const string ProductVersionNode = "ProductVersion";
+            const string targetFrameworkNode = "TargetFrameworkVersion";
+            const string oldToolsVersionNode = "OldToolsVersion";
+            const string productVersionNode = "ProductVersion";
 
-            XNamespace xProjNS = VSProjNamespace;
+            XNamespace xProjNs = VsProjNamespace;
 
             //Load the project file into memory
-            XElement xProjElement = XElement.Load(strProjectFilePath);
+            var xProjElement = XElement.Load(strProjectFilePath);
 
             //TODO: Determine if there is a better method to LINQ to XML to avoid iterating over entire Xml hierarchy
-            foreach (var item in xProjElement.Elements(xProjNS + "PropertyGroup").Descendants())
+            foreach (var item in xProjElement.Elements(xProjNs + "PropertyGroup").Descendants())
             {
                 //Get the TargetFrameworkVersion Xml Node
-                if (item.Name.LocalName.Equals(TargetFrameworkNode))
+                if (item.Name.LocalName.Equals(targetFrameworkNode))
                 {
                     //Get the text contents of the target framework node
                     var xTargetFramework = item;
@@ -77,7 +71,7 @@ namespace ProjectConverter
                 }//if
 
                 //Get the OldToolsVersion Xml Node
-                if (item.Name.LocalName.Equals(OldToolsVersionNode))
+                if (item.Name.LocalName.Equals(oldToolsVersionNode))
                 {
                     //Get the text contents of the target framework node
                     var xOldToolsVersion = item;
@@ -86,7 +80,7 @@ namespace ProjectConverter
                 }//if
 
                 //Get the ProductVersion Xml Node
-                if (item.Name.LocalName.Equals(ProductVersionNode))
+                if (item.Name.LocalName.Equals(productVersionNode))
                 {
                     //Get the text contents of the target framework node
                     var xProductVersionNode = item;

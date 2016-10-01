@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ProjectConverter
 {
-    public class VS2005Info: IVSIinfo 
+    public class Vs2005Info: IVsIinfo 
     {
       
         public string ProductVersion

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ProjectConverter
 {
-    public class VS2008Info: VSProjectVersionInfo
+    public class Vs2008Info: VsProjectVersionInfo
     {
         /// <summary>
         /// The Tools Version for Visual Studio 2008 is always 3.5

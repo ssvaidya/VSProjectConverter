@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ProjectConverter
 {
-    public class VS2010Info: VSProjectVersionInfo, IVSIinfo, IVSVersionInfo
+    public class Vs2010Info: VsProjectVersionInfo, IVsIinfo, IVsVersionInfo
     {
         /// <summary>
         /// The Tools Version for Visual Studio 2010 is always 4.0

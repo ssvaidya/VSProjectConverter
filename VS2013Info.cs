@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ProjectConverter
 {
-    public class VS2013Info: VSProjectVersionInfo, IVSIinfo, IVSVersionInfo
+    public class Vs2013Info: VsProjectVersionInfo, IVsIinfo, IVsVersionInfo
     {
         /// <summary>
         /// The Tools Version for Visual Studio 2013 is always 4.0

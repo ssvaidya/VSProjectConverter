@@ -12,3 +12,13 @@ G:\GitHub\VSProjectConverter\bin\Debug\ProjectConverter.exe.config
 G:\GitHub\VSProjectConverter\bin\Debug\ProjectConverter.XML
 G:\GitHub\VSProjectConverter\obj\Debug\ProjectConverter.exe
 G:\GitHub\VSProjectConverter\obj\Debug\ProjectConverter.pdb
+C:\Users\Lee\Source\Repos\VSProjectConverter\bin\Debug\ProjectConverter.exe.config
+C:\Users\Lee\Source\Repos\VSProjectConverter\bin\Debug\ProjectConverter.XML
+C:\Users\Lee\Source\Repos\VSProjectConverter\obj\Debug\ProjectConverter.exe
+C:\Users\Lee\Source\Repos\VSProjectConverter\obj\Debug\ProjectConverter.pdb
+C:\Users\Lee\Source\Repos\VSProjectConverter\bin\Debug\ProjectConverter.exe
+C:\Users\Lee\Source\Repos\VSProjectConverter\bin\Debug\ProjectConverter.pdb
+C:\Users\Lee\Source\Repos\VSProjectConverter\obj\Debug\ProjectConverter.csprojResolveAssemblyReference.cache
+C:\Users\Lee\Source\Repos\VSProjectConverter\obj\Debug\ProjectConverter.fmMain.resources
+C:\Users\Lee\Source\Repos\VSProjectConverter\obj\Debug\ProjectConverter.Properties.Resources.resources
+C:\Users\Lee\Source\Repos\VSProjectConverter\obj\Debug\ProjectConverter.csproj.GenerateResource.Cache

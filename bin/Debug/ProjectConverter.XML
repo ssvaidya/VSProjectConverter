@@ -4,19 +4,19 @@
         <name>ProjectConverter</name>
     </assembly>
     <members>
-        <member name="M:ProjectConverter.ConvertVSProjects.MakeBackup(System.String,System.Double)">
+        <member name="M:ProjectConverter.ConvertVsProjects.MakeBackup(System.String,System.Double)">
             <summary>
             Makes a backup copy of the existing Visual Studio project file
             </summary>
-            <param name="FileName"></param>
-            <param name="ExistingVersion"></param>
+            <param name="fileName"></param>
+            <param name="existingVersion"></param>
         </member>
-        <member name="M:ProjectConverter.ConvertVSProjects.ConvertProject(System.String,ProjectConverter.Versions,System.Boolean)">
+        <member name="M:ProjectConverter.ConvertVsProjects.ConvertProject(System.String,ProjectConverter.Versions,System.Boolean)">
             <summary>
             Convert VB.Net and C# Visual Studio project files
             </summary>
-            <param name="ProjFile"></param>
-            <param name="ConvertTo"></param>
+            <param name="projFile"></param>
+            <param name="convertTo"></param>
             <param name="blnRemoveSccBindings"></param>
             <returns></returns>
         </member>
@@ -51,48 +51,48 @@
             <returns>string containing the appropriate 32-bit Program Files directory</returns>
             <remarks>the 64-bit Program Files directory on a 64-bit OS will simply be Environment.SpecialFolder.ProgramFiles</remarks>
         </member>
-        <member name="M:ProjectConverter.TFSOps.LaunchTFExeProcess(System.String,System.String)">
+        <member name="M:ProjectConverter.TfsOps.LaunchTfExeProcess(System.String,System.String)">
             <summary>
             Launches the TF.exe process to be able to execute commands against TFS
             </summary>
-            <param name="strTFExePath"></param>
-            <param name="strTFExeArgs"></param>
+            <param name="strTfExePath"></param>
+            <param name="strTfExeArgs"></param>
         </member>
-        <member name="M:ProjectConverter.TFSOps.BuildTFSCheckoutArgs(System.String,System.String,System.String)">
+        <member name="M:ProjectConverter.TfsOps.BuildTfsCheckoutArgs(System.String,System.String,System.String)">
             <summary>
             Builds the appropriate arguments for checking out a file from TFS
             </summary>
-            <param name="strTFSFilePath"></param>
-            <param name="TFSUserName"></param>
-            <param name="TFSPassword"></param>
+            <param name="strTfsFilePath"></param>
+            <param name="tfsUserName"></param>
+            <param name="tfsPassword"></param>
             <returns></returns>
         </member>
-        <member name="M:ProjectConverter.TFSOps.BuildTFSCheckinArgs(System.String,System.String,System.String,System.String)">
+        <member name="M:ProjectConverter.TfsOps.BuildTfsCheckinArgs(System.String,System.String,System.String,System.String)">
             <summary>
             Builds the appropriate arguments for checking a file into TFS
             </summary>
-            <param name="strTFSFilePath"></param>
-            <param name="TFSUserName"></param>
-            <param name="TFSPassword"></param>
-            <param name="strTFSCheckInComment"></param>
+            <param name="strTfsFilePath"></param>
+            <param name="tfsUserName"></param>
+            <param name="tfsPassword"></param>
+            <param name="strTfsCheckInComment"></param>
             <returns></returns>
         </member>
-        <member name="M:ProjectConverter.UpgradeVSProjects.DevEnvUpgrade(System.String,System.String,System.String@)">
+        <member name="M:ProjectConverter.UpgradeVsProjects.DevEnvUpgrade(System.String,System.String,System.String@)">
             <summary>
             Executes the Visual Studio Solution Upgrade
             by directly invoking the Visual Studio devenv.exe executable
             and passing the /Upgrade switch
             </summary>
             <param name="strDevEnvExePath">string path to the Visual Studio devenv.exe executable</param>
-            <param name="strVSSolnPath">string path to the Visual Studio solution</param>
+            <param name="strVsSolnPath">string path to the Visual Studio solution</param>
             <param name="strStdOutput">out parameter for standard output</param>
         </member>
-        <member name="F:ProjectConverter.VS2013Info.TOOLS_VERSION">
+        <member name="F:ProjectConverter.Vs2013Info.TOOLS_VERSION">
             <summary>
             The Tools Version for Visual Studio 2013 is always 4.0
             </summary>
         </member>
-        <member name="P:ProjectConverter.VS2013Info.TargetFrameworkVersion">
+        <member name="P:ProjectConverter.Vs2013Info.TargetFrameworkVersion">
             <summary>
             Gets and sets the available Target Framework Versions 
             for Visual Studio 2013
@@ -100,12 +100,12 @@
             <remarks>Visual Studio 2013 supports .Net 2.0, .Net 3.0,
             .Net 3.5,.Net 4.0 and .Net 4.5 out of the box</remarks>
         </member>
-        <member name="F:ProjectConverter.VS2012Info.TOOLS_VERSION">
+        <member name="F:ProjectConverter.Vs2012Info.TOOLS_VERSION">
             <summary>
             The Tools Version for Visual Studio 2012 is always 4.0
             </summary>
         </member>
-        <member name="P:ProjectConverter.VS2012Info.TargetFrameworkVersion">
+        <member name="P:ProjectConverter.Vs2012Info.TargetFrameworkVersion">
             <summary>
             Gets and sets the available Target Framework Versions 
             for Visual Studio 2012
@@ -113,12 +113,12 @@
             <remarks>Visual Studio 2012 supports .Net 2.0, .Net 3.0,
             .Net 3.5,.Net 4.0 and .Net 4.5 out of the box</remarks>
         </member>
-        <member name="M:ProjectConverter.fmMain.PopulateSolutionInfo(System.String)">
+        <member name="M:ProjectConverter.FmMain.PopulateSolutionInfo(System.String)">
             <summary>
             Populates the Solution Information
             </summary>
         </member>
-        <member name="M:ProjectConverter.fmMain.LoadChoices(System.Double)">
+        <member name="M:ProjectConverter.FmMain.LoadChoices(System.Double)">
             <summary>
             Loads the appropriate version of Visual Studio
             available for conversion to display in the listbox
@@ -126,14 +126,14 @@
             <param name="version">double indicating the current version number
             of the selected Visual Studio project/solution file</param>
         </member>
-        <member name="M:ProjectConverter.fmMain.lbVersion_SelectedIndexChanged(System.Object,System.EventArgs)">
+        <member name="M:ProjectConverter.FmMain.lbVersion_SelectedIndexChanged(System.Object,System.EventArgs)">
             <summary>
             Select the version of Visual Studio for conversion
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:ProjectConverter.fmMain.bnConvert_Click(System.Object,System.EventArgs)">
+        <member name="M:ProjectConverter.FmMain.bnConvert_Click(System.Object,System.EventArgs)">
             <summary>
             Event handler for the Conversion
             to convert the Visual Studio Solution as well as all of the associated projects
@@ -141,14 +141,14 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:ProjectConverter.fmMain.fmMain_Load(System.Object,System.EventArgs)">
+        <member name="M:ProjectConverter.FmMain.fmMain_Load(System.Object,System.EventArgs)">
             <summary>
             Event handler for the Form Load event
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:ProjectConverter.fmMain.bnBrowse_Click(System.Object,System.EventArgs)">
+        <member name="M:ProjectConverter.FmMain.bnBrowse_Click(System.Object,System.EventArgs)">
             <summary>
             Event handler for the Browse button
             to find a solution file for conversion
@@ -156,14 +156,14 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:ProjectConverter.fmMain.cmdBrowseDevEnv_Click(System.Object,System.EventArgs)">
+        <member name="M:ProjectConverter.FmMain.cmdBrowseDevEnv_Click(System.Object,System.EventArgs)">
             <summary>
             Event handler for browsing to Visual Studio DevEnv.exe path
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:ProjectConverter.fmMain.cmdVSSolnPath_Click(System.Object,System.EventArgs)">
+        <member name="M:ProjectConverter.FmMain.cmdVSSolnPath_Click(System.Object,System.EventArgs)">
             <summary>
             Event handler for browsing to Visual Studio Solution Path
             </summary>
@@ -186,12 +186,12 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
-        <member name="F:ProjectConverter.VS2008Info.TOOLS_VERSION">
+        <member name="F:ProjectConverter.Vs2008Info.TOOLS_VERSION">
             <summary>
             The Tools Version for Visual Studio 2008 is always 3.5
             </summary>
         </member>
-        <member name="P:ProjectConverter.VS2008Info.TargetFrameworkVersion">
+        <member name="P:ProjectConverter.Vs2008Info.TargetFrameworkVersion">
             <summary>
             Gets and sets the available Target Framework Versions 
             for Visual Studio 2008
@@ -199,12 +199,12 @@
             <remarks>Visual Studio 2010 supports .Net 2.0, .Net 3.0,
             and .Net 3.5</remarks>
         </member>
-        <member name="F:ProjectConverter.VS2010Info.TOOLS_VERSION">
+        <member name="F:ProjectConverter.Vs2010Info.TOOLS_VERSION">
             <summary>
             The Tools Version for Visual Studio 2010 is always 4.0
             </summary>
         </member>
-        <member name="P:ProjectConverter.VS2010Info.TargetFrameworkVersion">
+        <member name="P:ProjectConverter.Vs2010Info.TargetFrameworkVersion">
             <summary>
             Gets and sets the available Target Framework Versions 
             for Visual Studio 2010
@@ -212,40 +212,40 @@
             <remarks>Visual Studio 2010 supports .Net 2.0, .Net 3.0,
             .Net 3.5 and .Net 4.0 out of the box</remarks>
         </member>
-        <member name="M:ProjectConverter.VSProjectCreator.VSProjectFactory(ProjectConverter.Versions)">
+        <member name="M:ProjectConverter.VsProjectCreator.VsProjectFactory(ProjectConverter.Versions)">
             <summary>
             Factory Method to determine the appropriate version 
             of the Visual Studio Project
             </summary>
-            <param name="ConvertTo">enumeration containing the version of Visual Studio
+            <param name="convertTo">enumeration containing the version of Visual Studio
             for conversion</param>
             <returns>class instance of the IVSInfo interface</returns>
         </member>
-        <member name="T:ProjectConverter.VSProjectFileInfo">
+        <member name="T:ProjectConverter.VsProjectFileInfo">
             <summary>
             This class contains attribute information regarding the actual Visual Studio Project File
             such as File Path, Guid attributes etc.
             </summary>
         </member>
-        <member name="M:ProjectConverter.VSProjectInfo.ReadProjectFile(System.String)">
+        <member name="M:ProjectConverter.VsProjectInfo.ReadProjectFile(System.String)">
             <summary>
             Reads an existing Visual Studio project file
             </summary>
             <param name="strProjectFilePath">string path to a Visual Studio project file</param>
         </member>
-        <member name="T:ProjectConverter.VSProjectVersionInfo">
+        <member name="T:ProjectConverter.VsProjectVersionInfo">
             <summary>
             Abstract class to be used for all version specific implementations
             of Visual Studio
             </summary>
         </member>
-        <member name="P:ProjectConverter.VSProjectVersionInfo.MaxFrameworkVersion">
+        <member name="P:ProjectConverter.VsProjectVersionInfo.MaxFrameworkVersion">
             <summary>
             Gets the Maximum Target Framework version
             supported by the specific release of Visual Studio
             </summary>
         </member>
-        <member name="M:ProjectConverter.VSProjectVersionInfo.CheckFrameworkVersion(System.String,System.String)">
+        <member name="M:ProjectConverter.VsProjectVersionInfo.CheckFrameworkVersion(System.String,System.String)">
             <summary>
             Checks the Target Framework version to both retain existing framework
             versions when possible and ensure compatibility
@@ -258,59 +258,59 @@
             additional checks need to be made to ensure that the Targeted Framework Versions are compatible with the 
             specific targeted release versions of Visual Studio</remarks>
         </member>
-        <member name="M:ProjectConverter.VSSolutionInfo.#ctor(System.String)">
+        <member name="M:ProjectConverter.VsSolutionInfo.#ctor(System.String)">
             <summary>
             Class constructor
             </summary>
         </member>
-        <member name="P:ProjectConverter.VSSolutionInfo.FormatVersion">
+        <member name="P:ProjectConverter.VsSolutionInfo.FormatVersion">
             <summary>
             Gets and sets the Solution Format version
             </summary>
         </member>
-        <member name="P:ProjectConverter.VSSolutionInfo.ProjectList">
+        <member name="P:ProjectConverter.VsSolutionInfo.ProjectList">
             <summary>
             Provides a collection of all Visual Studio
             projects in the Solution
             </summary>
         </member>
-        <member name="P:ProjectConverter.VSSolutionInfo.SupportedProjectConvList">
+        <member name="P:ProjectConverter.VsSolutionInfo.SupportedProjectConvList">
             <summary>
             Provides a collection of Supported
             Visual Studio Project Conversions
             </summary>
         </member>
-        <member name="M:ProjectConverter.VSSolutionInfo.GetFormatVersion(System.String)">
+        <member name="M:ProjectConverter.VsSolutionInfo.GetFormatVersion(System.String)">
             <summary>
             Gets the Solution file "format version".  
             Also verifies we have a valid solution file
             </summary>
-            <param name="FilePath">string containing the file path to the Solution File</param>
+            <param name="filePath">string containing the file path to the Solution File</param>
             <returns>double containing the Solution Format Version</returns>
         </member>
-        <member name="M:ProjectConverter.VSSolutionInfo.CheckValidSolution(System.String)">
+        <member name="M:ProjectConverter.VsSolutionInfo.CheckValidSolution(System.String)">
             <summary>
             Checks whether or not the solution is a valid solution file
             </summary>
-            <param name="FilePath"></param>
+            <param name="filePath"></param>
             <returns>double containing the solution's format version</returns>
         </member>
-        <member name="M:ProjectConverter.VSSolutionInfo.ParseVSSolutionFile">
+        <member name="M:ProjectConverter.VsSolutionInfo.ParseVsSolutionFile">
             <summary>
             Parses through the Visual Studio Solution file
             to populate all of the required properties
             </summary>
         </member>
-        <member name="M:ProjectConverter.VSSolutionInfo.ConvertVSSolution(ProjectConverter.VSSolutionInfo,ProjectConverter.Versions)">
+        <member name="M:ProjectConverter.VsSolutionInfo.ConvertVsSolution(ProjectConverter.VsSolutionInfo,ProjectConverter.Versions)">
             <summary>
             Converts the Visual Studio Solution from one version to another
             </summary>
-            <param name="objVSSolnInfo" type="ProjectConverter.VSSolutionInfo">
+            <param name="objVsSolnInfo" type="ProjectConverter.VSSolutionInfo">
                 <para>
                     
                 </para>
             </param>
-            <param name="ConvertTo" type="ProjectConverter.Versions">
+            <param name="convertTo" type="ProjectConverter.Versions">
                 <para>
                     
                 </para>
@@ -319,12 +319,12 @@
                 A ProjectConverter.VSSolutionInfo value...
             </returns>
         </member>
-        <member name="M:ProjectConverter.VSSolutionInfo.ConvertVSSolution">
+        <member name="M:ProjectConverter.VsSolutionInfo.ConvertVsSolution">
             <summary>
             Performs the conversion of the Visual Studio Solution
             </summary>
         </member>
-        <member name="T:ProjectConverter.VSSolutionFormat">
+        <member name="T:ProjectConverter.VsSolutionFormat">
             <summary>
             Stores the Solution Format information
             </summary>

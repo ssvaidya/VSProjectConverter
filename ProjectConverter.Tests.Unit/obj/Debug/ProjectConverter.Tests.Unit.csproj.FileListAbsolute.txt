@@ -7,3 +7,12 @@ G:\CodePlex\ProjectConverter\ProjectConverter.Tests.Unit\bin\Debug\Moq.xml
 G:\CodePlex\ProjectConverter\ProjectConverter.Tests.Unit\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
 G:\CodePlex\ProjectConverter\ProjectConverter.Tests.Unit\obj\Debug\ProjectConverter.Tests.Unit.dll
 G:\CodePlex\ProjectConverter\ProjectConverter.Tests.Unit\obj\Debug\ProjectConverter.Tests.Unit.pdb
+C:\Users\Lee\Source\Repos\VSProjectConverter\ProjectConverter.Tests.Unit\bin\Debug\ProjectConverter.Tests.Unit.dll
+C:\Users\Lee\Source\Repos\VSProjectConverter\ProjectConverter.Tests.Unit\bin\Debug\ProjectConverter.Tests.Unit.pdb
+C:\Users\Lee\Source\Repos\VSProjectConverter\ProjectConverter.Tests.Unit\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Lee\Source\Repos\VSProjectConverter\ProjectConverter.Tests.Unit\bin\Debug\Moq.dll
+C:\Users\Lee\Source\Repos\VSProjectConverter\ProjectConverter.Tests.Unit\bin\Debug\Moq.xml
+C:\Users\Lee\Source\Repos\VSProjectConverter\ProjectConverter.Tests.Unit\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\Users\Lee\Source\Repos\VSProjectConverter\ProjectConverter.Tests.Unit\obj\Debug\ProjectConverter.Tests.Unit.csprojResolveAssemblyReference.cache
+C:\Users\Lee\Source\Repos\VSProjectConverter\ProjectConverter.Tests.Unit\obj\Debug\ProjectConverter.Tests.Unit.dll
+C:\Users\Lee\Source\Repos\VSProjectConverter\ProjectConverter.Tests.Unit\obj\Debug\ProjectConverter.Tests.Unit.pdb

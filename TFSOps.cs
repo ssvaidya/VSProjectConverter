@@ -1,27 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
+﻿using System.Diagnostics;
 
 namespace ProjectConverter
 {
-    public class TFSOps
+    public class TfsOps
     {
-        private const string PAD_QUOTES = @"""";
+        private const string PadQuotes = @"""";
 
         /// <summary>
         /// Launches the TF.exe process to be able to execute commands against TFS
         /// </summary>
-        /// <param name="strTFExePath"></param>
-        /// <param name="strTFExeArgs"></param>
-        public static void LaunchTFExeProcess(string strTFExePath, string strTFExeArgs)
+        /// <param name="strTfExePath"></param>
+        /// <param name="strTfExeArgs"></param>
+        public static void LaunchTfExeProcess(string strTfExePath, string strTfExeArgs)
         {
-            ProcessStartInfo objProcInfo = new ProcessStartInfo();
+            var objProcInfo = new ProcessStartInfo
+            {
+                Arguments = strTfExeArgs,
+                FileName = strTfExePath,
+                UseShellExecute = true
+            };
 
-            objProcInfo.Arguments = strTFExeArgs;
-            objProcInfo.FileName = strTFExePath;
-            objProcInfo.UseShellExecute = true;
 
             Process.Start(objProcInfo);
         }//method: LaunchTFExeProcess
@@ -29,15 +27,15 @@ namespace ProjectConverter
         /// <summary>
         /// Builds the appropriate arguments for checking out a file from TFS
         /// </summary>
-        /// <param name="strTFSFilePath"></param>
-        /// <param name="TFSUserName"></param>
-        /// <param name="TFSPassword"></param>
+        /// <param name="strTfsFilePath"></param>
+        /// <param name="tfsUserName"></param>
+        /// <param name="tfsPassword"></param>
         /// <returns></returns>
-        public static string BuildTFSCheckoutArgs(string strTFSFilePath, string TFSUserName, string TFSPassword)
+        public static string BuildTfsCheckoutArgs(string strTfsFilePath, string tfsUserName, string tfsPassword)
         {
 
-            string strFilePath = PAD_QUOTES + strTFSFilePath + PAD_QUOTES;
-            string strArguments = string.Format("checkout /lock:none /login:{0},{1} {2}", TFSUserName, TFSPassword,
+            var strFilePath = PadQuotes + strTfsFilePath + PadQuotes;
+            var strArguments = string.Format("checkout /lock:none /login:{0},{1} {2}", tfsUserName, tfsPassword,
                                                 strFilePath);
 
             return strArguments;
@@ -46,20 +44,20 @@ namespace ProjectConverter
         /// <summary>
         /// Builds the appropriate arguments for checking a file into TFS
         /// </summary>
-        /// <param name="strTFSFilePath"></param>
-        /// <param name="TFSUserName"></param>
-        /// <param name="TFSPassword"></param>
-        /// <param name="strTFSCheckInComment"></param>
+        /// <param name="strTfsFilePath"></param>
+        /// <param name="tfsUserName"></param>
+        /// <param name="tfsPassword"></param>
+        /// <param name="strTfsCheckInComment"></param>
         /// <returns></returns>
-        public static string BuildTFSCheckinArgs(string strTFSFilePath,
-            string TFSUserName, string TFSPassword, string strTFSCheckInComment)
+        public static string BuildTfsCheckinArgs(string strTfsFilePath,
+            string tfsUserName, string tfsPassword, string strTfsCheckInComment)
         {
 
 
 
-            string strFilePath = PAD_QUOTES + strTFSFilePath + PAD_QUOTES;
-            string strTFSComment = PAD_QUOTES + strTFSCheckInComment + PAD_QUOTES;
-            string strArguments = string.Format("checkin /comment:{0} /noprompt /login:{1},{2} {3}",strTFSComment, TFSUserName,TFSPassword, strFilePath);
+            var strFilePath = PadQuotes + strTfsFilePath + PadQuotes;
+            var strTfsComment = PadQuotes + strTfsCheckInComment + PadQuotes;
+            var strArguments = string.Format("checkin /comment:{0} /noprompt /login:{1},{2} {3}",strTfsComment, tfsUserName,tfsPassword, strFilePath);
 
             return strArguments;
         }//method: BuildTFSCheckArgs
